@@ -68,6 +68,9 @@ void check_list_add_front(List * lp, void *val)
     if(lp == NULL)
         return;
     maybe_grow(lp);
+#ifdef __TRUSTINSOFT_BUGFIX__
+    if (lp->n_elts)
+#endif
     memmove(lp->data + 1, lp->data, lp->n_elts * sizeof lp->data[0]);
     lp->last++;
     lp->n_elts++;
